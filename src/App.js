@@ -1,24 +1,74 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Backdrop from './components/Backdrop/Backdrop';
+import Modal from './components/Modal/Modal';
+import uuid from 'uuid';
 
 function App() {
+  const [backdrop, setBackdrop] = useState(false);
+  const [persons, setPersons] = useState([
+    { id: 'abc', name: 'Adam', surname: 'Moreno', birth: '6/5/1971' },
+    { id: 'def', name: 'Czesłąw', surname: 'Adamek', birth: '6/6/1972' },
+    { id: 'ghj', name: 'Louella', surname: 'Franc', birth: '3/6/1979' }
+  ]);
+  const [newPerson, setNewPerson] = useState('');
+
+  const backdropHandler = () => {
+    setBackdrop(!backdrop);
+  };
+
+  const personHandler = id => {
+    setPersons([...persons].filter(person => person.id !== id));
+  };
+
+  const addPersonHandler = e => {
+    e.preventDefault();
+    const person = {
+      id: `${uuid.v4()}`,
+      name: `${newPerson}`,
+      surname: 'Moreno',
+      birth: '6/5/1971'
+    };
+    setNewPerson('');
+    setPersons([...persons].concat(person));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <p>Hello!</p>
+      <Backdrop show={backdrop} clickedBackdrop={backdropHandler} />
+      <Modal show={backdrop}>
+        <button className="modal-button" onClick={() => backdropHandler()}>
+          Hide
+        </button>
+      </Modal>
+      <button className="modal-button" onClick={() => backdropHandler()}>
+        Click me!
+      </button>
+      <form>
+        <input
+          onChange={e => setNewPerson(e.target.value)}
+          type="text"
+          value={newPerson}
+        />
+        <input
+          onClick={e => addPersonHandler(e)}
+          type="submit"
+          disabled={newPerson.length <= 2}
+          value="Add person!"
+        />
+      </form>
+      <ul className="persons-list">
+        {persons.map(person => (
+          <li
+            className="person"
+            key={person.id}
+            onClick={personHandler.bind('this', person.id)}
+          >
+            {person.name}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
