@@ -36,7 +36,7 @@ function App() {
   return (
     <div className="app">
       <p>Hello!</p>
-      <Backdrop show={backdrop} clickedBackdrop={backdropHandler} />
+      <Backdrop show={backdrop} clickedBackdrop={backdropHandler()} />
       <Modal show={backdrop}>
         <button className="modal-button" onClick={() => backdropHandler()}>
           Hide

@@ -2,15 +2,9 @@ import React from 'react';
 import './Modal.css';
 
 const Modal = ({ show, children }) => {
-  const modalAnimation = {
-    opacity: show ? '1' : '0'
-  };
+  const myClass = `modal ${show ? 'modal-open' : 'modal-closed'}`;
 
-  return (
-    <div className="modal" style={modalAnimation}>
-      {children}
-    </div>
-  );
+  return <div className={myClass}>{children}</div>;
 };
 
 export default Modal;
