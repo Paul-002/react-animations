@@ -8,7 +8,6 @@
   height: 200px;
   left: 13%;
   top: 40%;
-  transition: all 0.3s ease-out;
 }
 
 .modal-button {
@@ -27,19 +26,19 @@
 @keyframes openModal {
   0% {
     opacity: 0;
-    transform: translateY(-200%);
+    transform: translateY(-150%);
   }
   25% {
     opacity: 1;
-    transform: translateY(-80%);
+    transform: translateY(-100%);
   }
   50% {
     opacity: 1;
-    transform: translateY(-30%);
+    transform: translateY(-50%);
   }
   75% {
     opacity: 1;
-    transform: translateY(20%);
+    transform: translateY(10%);
   }
   100% {
     opacity: 1;
@@ -54,32 +53,18 @@
   }
   25% {
     opacity: 1;
-    transform: translateY(20%);
+    transform: translateY(10%);
   }
   50% {
     opacity: 0.8;
-    transform: translateY(0%);
+    transform: translateY(-25%);
   }
   75% {
     opacity: 0.5;
-    transform: translateY(50%);
+    transform: translateY(-50%);
   }
   100% {
     opacity: 0;
-    transform: translateY(-100%);
+    transform: translateY(-70%);
   }
 }
-
-/*
-@media (min-width: 600px) {
-  .Modal {
-    width: 400px;
-    left: calc(50% - 200px);
-  }
-}
-
-@media (max-width: 320px) {
-  .Modal {
-    top: 50px;
-  }
-} */

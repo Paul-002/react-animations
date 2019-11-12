@@ -5,13 +5,50 @@
   position: fixed;
   left: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: black;
+  opacity: 0.6;
 }
 
 .backdrop-open {
-  display: block;
+  animation: backdropOpen 0.4s ease-out forwards;
 }
 
 .backdrop-closed {
-  display: none;
+  animation: backdropClosed 0.4s ease-out forwards;
+}
+
+@keyframes backdropOpen {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.45;
+  }
+  75% {
+    oapcity: 0.6;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes backdropClosed {
+  0% {
+    opacity: 0.6;
+  }
+  25% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.45;
+  }
+  70% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+  }
 }

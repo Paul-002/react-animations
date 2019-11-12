@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import './App.css';
-import Backdrop from './components/Backdrop/Backdrop';
-import Modal from './components/Modal/Modal';
-import uuid from 'uuid';
+import React, { useState } from "react";
+import "./App.css";
+import Backdrop from "./components/Backdrop/Backdrop";
+import Modal from "./components/Modal/Modal";
+import uuid from "uuid";
 
 function App() {
   const [backdrop, setBackdrop] = useState(false);
   const [persons, setPersons] = useState([
-    { id: 'abc', name: 'Adam', surname: 'Moreno', birth: '6/5/1971' },
-    { id: 'def', name: 'Czesłąw', surname: 'Adamek', birth: '6/6/1972' },
-    { id: 'ghj', name: 'Louella', surname: 'Franc', birth: '3/6/1979' }
+    { id: "abc", name: "Adam", surname: "Moreno", birth: "6/5/1971" },
+    { id: "def", name: "Czesłąw", surname: "Adamek", birth: "6/6/1972" },
+    { id: "ghj", name: "Louella", surname: "Franc", birth: "3/6/1979" }
   ]);
-  const [newPerson, setNewPerson] = useState('');
+  const [newPerson, setNewPerson] = useState("");
 
   const backdropHandler = () => {
     setBackdrop(!backdrop);
@@ -23,28 +23,32 @@ function App() {
 
   const addPersonHandler = e => {
     e.preventDefault();
-    const person = {
-      id: `${uuid.v4()}`,
-      name: `${newPerson}`,
-      surname: 'Moreno',
-      birth: '6/5/1971'
-    };
-    setNewPerson('');
-    setPersons([...persons].concat(person));
+    if (newPerson.length <= 2) {
+      backdropHandler();
+    } else {
+      const person = {
+        id: `${uuid.v4()}`,
+        name: `${newPerson}`,
+        surname: "Moreno",
+        birth: "6/5/1971"
+      };
+      setNewPerson("");
+      setPersons([...persons].concat(person));
+    }
   };
 
   return (
     <div className="app">
-      <p>Hello!</p>
-      <Backdrop show={backdrop} clickedBackdrop={backdropHandler()} />
+      <p>Enter name...</p>
+      <Backdrop
+        show={backdrop}
+        clickedBackdrop={backdropHandler.bind("this")}
+      />
       <Modal show={backdrop}>
         <button className="modal-button" onClick={() => backdropHandler()}>
           Hide
         </button>
       </Modal>
-      <button className="modal-button" onClick={() => backdropHandler()}>
-        Click me!
-      </button>
       <form>
         <input
           onChange={e => setNewPerson(e.target.value)}
@@ -54,7 +58,6 @@ function App() {
         <input
           onClick={e => addPersonHandler(e)}
           type="submit"
-          disabled={newPerson.length <= 2}
           value="Add person!"
         />
       </form>
@@ -63,7 +66,7 @@ function App() {
           <li
             className="person"
             key={person.id}
-            onClick={personHandler.bind('this', person.id)}
+            onClick={personHandler.bind("this", person.id)}
           >
             {person.name}
           </li>
