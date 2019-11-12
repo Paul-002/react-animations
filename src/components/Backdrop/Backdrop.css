@@ -9,11 +9,11 @@
   opacity: 0.6;
 }
 
-.backdrop-open {
+.backdrop-animation-enter-active {
   animation: backdropOpen 0.4s ease-out forwards;
 }
 
-.backdrop-closed {
+.backdrop-animation-exit-active {
   animation: backdropClosed 0.4s ease-out forwards;
 }
 

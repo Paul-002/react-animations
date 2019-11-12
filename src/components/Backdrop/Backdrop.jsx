@@ -1,6 +1,6 @@
 import React from "react";
 import "./Backdrop.css";
-import Transition from "react-transition-group/Transition";
+import CSSTransition from "react-transition-group/CSSTransition";
 
 const Backdrop = ({ show, clickedBackdrop }) => {
   const animationTiming = {
@@ -9,25 +9,15 @@ const Backdrop = ({ show, clickedBackdrop }) => {
   };
 
   return (
-    <Transition in={show} timeout={animationTiming} mountOnEnter unmountOnExit>
-      {state => {
-        const myClass = `backdrop ${
-          state === "entering"
-            ? "backdrop-open"
-            : state === "exiting"
-            ? "backdrop-closed"
-            : ""
-        }`;
-
-        return (
-          <div
-            className={myClass}
-            onClick={clickedBackdrop}
-            role="presentation"
-          />
-        );
-      }}
-    </Transition>
+    <CSSTransition
+      in={show}
+      timeout={animationTiming}
+      mountOnEnter
+      unmountOnExit
+      classNames="backdrop-animation"
+    >
+      <div className="backdrop" onClick={clickedBackdrop} role="presentation" />
+    </CSSTransition>
   );
 };
 

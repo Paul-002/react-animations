@@ -15,11 +15,11 @@
   height: 50px;
 }
 
-.modal-open {
+.modal-animation-enter-active {
   animation: openModal 0.3s ease-out forwards;
 }
 
-.modal-closed {
+.modal-animation-exit-active {
   animation: closeModal 0.3s ease-out forwards;
 }
 

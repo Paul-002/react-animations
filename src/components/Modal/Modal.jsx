@@ -1,6 +1,6 @@
 import React from "react";
 import "./Modal.css";
-import Transition from "react-transition-group/Transition";
+import CSSTransition from "react-transition-group/CSSTransition";
 
 const Modal = ({ show, children }) => {
   const animationTiming = {
@@ -9,18 +9,15 @@ const Modal = ({ show, children }) => {
   };
 
   return (
-    <Transition in={show} timeout={animationTiming} mountOnEnter unmountOnExit>
-      {state => {
-        const myClass = `modal ${
-          state === "entering"
-            ? "modal-open"
-            : state === "exiting"
-            ? "modal-closed"
-            : ""
-        }`;
-        return <div className={myClass}>{children}</div>;
-      }}
-    </Transition>
+    <CSSTransition
+      classNames="modal-animation"
+      in={show}
+      timeout={animationTiming}
+      mountOnEnter
+      unmountOnExit
+    >
+      <div className="modal">{children}</div>
+    </CSSTransition>
   );
 };
 
