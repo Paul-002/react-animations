@@ -10,11 +10,6 @@
   top: 40%;
 }
 
-.modal-button {
-  width: 100px;
-  height: 50px;
-}
-
 .modal-animation-enter-active {
   animation: openModal 0.3s ease-out forwards;
 }

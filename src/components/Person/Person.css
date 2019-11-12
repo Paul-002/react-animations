@@ -1,0 +1,50 @@
+.person {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 250px;
+  height: 50px;
+  background-color: sandybrown;
+  border: 1px solid black;
+  border-radius: 7px;
+}
+
+.list-item-enter-active {
+  animation: showItem 0.2s ease-out forwards;
+}
+
+.list-item-exit-active {
+  animation: hideItem 0.3s ease-out forwards;
+}
+
+@keyframes showItem {
+  0% {
+    opacity: 0;
+    transform: translateY(0%);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes hideItem {
+  0% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+  
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}

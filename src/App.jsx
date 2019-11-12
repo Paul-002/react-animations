@@ -3,6 +3,7 @@ import "./App.css";
 import Backdrop from "./components/Backdrop/Backdrop";
 import Modal from "./components/Modal/Modal";
 import uuid from "uuid";
+import PersonsList from "./components/PersonsList/PersonsList";
 
 function App() {
   const [backdrop, setBackdrop] = useState(false);
@@ -45,9 +46,17 @@ function App() {
         clickedBackdrop={backdropHandler.bind("this")}
       />
       <Modal show={backdrop}>
-        <button className="modal-button" onClick={() => backdropHandler()}>
-          Hide
-        </button>
+        <div className="message-wrapper">
+          <h3 className="modal-message">
+            Name must be at least 3 characters...
+          </h3>
+          <button
+            className="modal-button"
+            onClick={backdropHandler.bind("this")}
+          >
+            Hide
+          </button>
+        </div>
       </Modal>
       <form>
         <input
@@ -61,17 +70,7 @@ function App() {
           value="Add person!"
         />
       </form>
-      <ul className="persons-list">
-        {persons.map(person => (
-          <li
-            className="person"
-            key={person.id}
-            onClick={personHandler.bind("this", person.id)}
-          >
-            {person.name}
-          </li>
-        ))}
-      </ul>
+      <PersonsList persons={persons} onClickItem={personHandler} />
     </div>
   );
 }
